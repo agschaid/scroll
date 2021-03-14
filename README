@@ -1,3 +1,4 @@
+# README
 This is my fork of `scroll`.
 
 Mostly I'll just add nix(os) buildscripts and might tweak the bindings a little.

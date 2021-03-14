@@ -1,3 +1,13 @@
+This is my fork of `scroll`.
+
+Mostly I'll just add nix(os) buildscripts and might tweak the bindings a little.
+
+I'd might like to work on an external pip feature like in 
+(this `st` patch)[https://st.suckless.org/patches/externalpipe/]. But I am pretty
+sure my C KungFu is not good enough.
+
+# Original README
+
 This program provides a scroll back buffer for a terminal like st(1).  It
 should run on any Unix-like system.
 

@@ -7,6 +7,40 @@ I'd might like to work on an external pip feature like in
 (this `st` patch)[https://st.suckless.org/patches/externalpipe/]. But I am pretty
 sure my C KungFu is not good enough.
 
+## Build localy
+Just run `nix-build` or `nix-build default.nix`. The binary can be found at `result/bin/st`.
+
+## Include in NixOS
+
+In my `configuration.nix` have (among overlay definitions) this:
+
+```
+  nixpkgs.overlays =
+    let
+      scroll_src = pkgs.fetchFromGitHub {
+        owner  = "agschaid";
+        repo   = "scroll";
+        rev    = "a3078d4e5c956b9cfe483c8f500c8994d01e54d0";
+        sha256 = "1d1lsqafkcia3s86cbmpgw7dz9qp5mwra8s0cg5x3a86p81cl1ca";
+      };
+
+
+      src_overlays = self: super: {
+        scroll = import "${st_src}/default.nix";
+      };
+
+      other_overlays = self: super: {
+        # other stuff
+      };
+
+    in
+    [other_overlays src_overlays];
+
+    # then install scroll as usual package
+```
+Not sure if this is the most elegant or idiomatic way but it works.
+
+
 # Original README
 
 This program provides a scroll back buffer for a terminal like st(1).  It
